@@ -514,6 +514,7 @@ function closePriceModal() {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closePriceModal();
+        closeClaudeModal();
     }
 });
 
@@ -670,3 +671,23 @@ toastStyle.textContent = `
     }
 `;
 document.head.appendChild(toastStyle);
+
+// 打开Claude充值方式选择弹窗
+function openClaudeModal() {
+    const modal = document.getElementById('claudeModal');
+    if (modal) {
+        modal.classList.add('show');
+        // 禁止页面滚动
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 关闭Claude充值方式选择弹窗
+function closeClaudeModal() {
+    const modal = document.getElementById('claudeModal');
+    if (modal) {
+        modal.classList.remove('show');
+        // 恢复页面滚动
+        document.body.style.overflow = '';
+    }
+}
