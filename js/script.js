@@ -37,43 +37,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 添加鼠标移动视差效果
+    // 添加鼠标移动视差效果（仅在桌面端）
     const container = document.querySelector('.container');
     const cards = document.querySelectorAll('.service-card');
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1024;
 
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
+    if (!isMobileDevice) {
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
 
-        cards.forEach((card, index) => {
-            const speed = (index + 1) * 2;
-            const x = (mouseX - 0.5) * speed;
-            const y = (mouseY - 0.5) * speed;
+            cards.forEach((card, index) => {
+                const speed = (index + 1) * 2;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
 
-            card.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    });
-
-    // 卡片悬停时的3D效果
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                card.style.transform = `translate(${x}px, ${y}px)`;
+            });
         });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        // 卡片悬停时的3D效果
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
         });
-    });
+    }
 
     // 按钮点击波纹效果
     const buttons = document.querySelectorAll('.btn');
@@ -136,21 +139,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 滚动视差效果
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const header = document.querySelector('.header');
-        const mainContent = document.querySelector('.main-content');
+    // 滚动视差效果已禁用，避免元素重叠问题
+    // if (!isMobileDevice) {
+    //     window.addEventListener('scroll', () => {
+    //         const scrolled = window.pageYOffset;
+    //         const header = document.querySelector('.header');
+    //         const mainContent = document.querySelector('.main-content');
 
-        if (header) {
-            header.style.transform = `translateY(${scrolled * 0.5}px)`;
-            header.style.opacity = 1 - scrolled / 500;
-        }
+    //         if (header) {
+    //             header.style.transform = `translateY(${scrolled * 0.5}px)`;
+    //             header.style.opacity = 1 - scrolled / 500;
+    //         }
 
-        if (mainContent) {
-            mainContent.style.transform = `translateY(${scrolled * 0.2}px)`;
-        }
-    });
+    //         if (mainContent) {
+    //             mainContent.style.transform = `translateY(${scrolled * 0.2}px)`;
+    //         }
+    //     });
+    // }
 });
 
 // 创建动态粒子背景

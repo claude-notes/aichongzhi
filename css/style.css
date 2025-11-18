@@ -247,6 +247,7 @@ body {
     margin-bottom: 70px;
     align-items: stretch;
     position: relative;
+    z-index: 10;
 }
 
 /* 中央分割线 */
@@ -540,6 +541,8 @@ body {
     padding: 32px;
     border: 1px solid var(--divider);
     animation: fadeInUp 0.8s ease-out 0.3s both;
+    position: relative;
+    z-index: 5;
 }
 
 .contact-header {
@@ -1131,6 +1134,8 @@ body {
 
 .claude-modal-body {
     padding: 40px;
+    overflow-y: auto;
+    max-height: calc(90vh - 100px);
 }
 
 /* 选择卡片 */
@@ -1400,6 +1405,7 @@ body {
 
     .service-card {
         min-height: auto;
+        transform: none !important;
     }
 
     .wechat-info {
@@ -1430,6 +1436,7 @@ body {
 
     .claude-modal-body {
         padding: 28px 24px;
+        max-height: calc(90vh - 80px);
     }
 
     .choice-cards {
@@ -1639,6 +1646,7 @@ body {
 
     .claude-modal-body {
         padding: 24px 20px;
+        max-height: calc(90vh - 70px);
     }
 
     .step-arrow {
