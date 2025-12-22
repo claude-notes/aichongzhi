@@ -189,8 +189,8 @@ function createParticle(container) {
     const duration = Math.random() * 20 + 10;
     const delay = Math.random() * 5;
 
-    // 随机选择颜色 (GPT绿色或Claude棕色)
-    const colors = ['rgba(16, 163, 127, 0.3)', 'rgba(204, 120, 92, 0.3)'];
+    // 随机选择颜色 (GPT绿色、Gemini蓝紫色或Claude棕色)
+    const colors = ['rgba(16, 163, 127, 0.3)', 'rgba(142, 159, 245, 0.3)', 'rgba(204, 120, 92, 0.3)'];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     particle.style.cssText = `
@@ -309,6 +309,10 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'g' || e.key === 'G') {
         window.open('https://chatgpt.com', '_blank');
     }
+    // 按 M 键跳转到 Gemini
+    if (e.key === 'm' || e.key === 'M') {
+        window.open('https://gemini.google.com', '_blank');
+    }
     // 按 C 键跳转到 Claude
     if (e.key === 'c' || e.key === 'C') {
         window.open('https://claude.ai', '_blank');
@@ -318,7 +322,7 @@ document.addEventListener('keydown', (e) => {
 // 添加加载完成提示
 window.addEventListener('load', () => {
     console.log('%c🚀 AI代充导航已加载完成！', 'color: #10a37f; font-size: 20px; font-weight: bold;');
-    console.log('%c💡 快捷键提示：按 G 键快速访问 ChatGPT，按 C 键快速访问 Claude', 'color: #cc785c; font-size: 14px;');
+    console.log('%c💡 快捷键提示：按 G 键快速访问 ChatGPT，按 M 键快速访问 Gemini，按 C 键快速访问 Claude', 'color: #8e9ff5; font-size: 14px;');
 });
 
 // Logo 彩蛋效果
@@ -327,7 +331,7 @@ function triggerLogoEasterEgg() {
     if (!logo) return;
 
     // 创建彩色粒子爆炸效果
-    const colors = ['#10a37f', '#cc785c', '#1a7f64', '#a8563d', '#d1f4e8', '#f5e6e0'];
+    const colors = ['#10a37f', '#8e9ff5', '#cc785c', '#1a7f64', '#6b7ce6', '#a8563d', '#d1f4e8', '#e8ebfc', '#f5e6e0'];
     const logoRect = logo.getBoundingClientRect();
     const centerX = logoRect.left + logoRect.width / 2;
     const centerY = logoRect.top + logoRect.height / 2;
@@ -420,7 +424,7 @@ document.head.appendChild(easterEggStyle);
 
 // 收藏页面功能
 function addToBookmarks() {
-    const pageTitle = 'AI 自助代充升级导航 | ChatGPT & Claude';
+    const pageTitle = 'AI 自助代充升级导航 | ChatGPT & Gemini & Claude';
     const pageUrl = window.location.href;
     const bookmarkBtn = document.getElementById('bookmarkBtn');
 
@@ -520,6 +524,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closePriceModal();
         closeClaudeModal();
+        closeGeminiModal();
     }
 });
 
@@ -696,3 +701,73 @@ function closeClaudeModal() {
         document.body.style.overflow = '';
     }
 }
+
+// 打开Gemini账号服务弹窗
+function openGeminiModal() {
+    const modal = document.getElementById('geminiModal');
+    if (modal) {
+        modal.classList.add('show');
+        // 禁止页面滚动
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 关闭Gemini账号服务弹窗
+function closeGeminiModal() {
+    const modal = document.getElementById('geminiModal');
+    if (modal) {
+        modal.classList.remove('show');
+        // 恢复页面滚动
+        document.body.style.overflow = '';
+    }
+}
+
+// 滚动到联系卡片
+function scrollToContact() {
+    const contactCard = document.querySelector('.contact-card');
+    if (contactCard) {
+        contactCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // 添加高亮效果
+        contactCard.style.transition = 'all 0.3s';
+        contactCard.style.transform = 'scale(1.02)';
+        contactCard.style.boxShadow = '0 0 30px rgba(142, 159, 245, 0.5)';
+        setTimeout(() => {
+            contactCard.style.transform = '';
+            contactCard.style.boxShadow = '';
+        }, 2000);
+    }
+}
+
+// 打开 Gemini 商城链接并提示 (美观弹窗版)
+function openGeminiShop() {
+    const modal = document.getElementById('geminiShopModal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 关闭 Gemini 商城提示弹窗
+function closeGeminiShopModal() {
+    const modal = document.getElementById('geminiShopModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+// 确认前往商城
+function confirmGeminiShop() {
+    closeGeminiShopModal();
+    window.open('https://fe.dtyuedan.cn/shop/yueshi/h8axi3', '_blank');
+}
+
+// ESC键关闭弹窗
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closePriceModal();
+        closeClaudeModal();
+        closeGeminiModal();
+        closeGeminiShopModal();
+    }
+});

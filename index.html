@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 自助代充升级导航 | ChatGPT & Claude</title>
+    <title>AI 自助代充升级导航 | ChatGPT & Gemini & Claude</title>
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -48,7 +48,7 @@
                         </svg>
                     </div>
                     <h2 class="service-title">ChatGPT</h2>
-                    <p class="service-desc">OpenAI 旗舰对话模型<br/>GPT-5.1 Plus 会员代充 · 稳定可靠</p>
+                    <p class="service-desc">OpenAI 旗舰对话模型<br/>GPT-5.2 Plus 会员代充 · 稳定可靠</p>
                     <a href="https://gptplus.uno" target="_blank" class="btn btn-gpt">
                         <span>前往升级</span>
                         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,8 +64,8 @@
                 </div>
             </div>
 
-            <!-- 中央分割线 -->
-            <div class="divider"></div>
+            <!-- 第一条分割线 -->
+            <div class="divider divider-1"></div>
 
             <!-- Claude 区域 -->
             <div class="service-card claude-card">
@@ -89,6 +89,34 @@
                         <span class="feature-tag">Sonnet 4.5</span>
                         <span class="feature-tag">卡密充值</span>
                         <span class="feature-tag">无需账号密码</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二条分割线 -->
+            <div class="divider divider-2"></div>
+
+            <!-- Gemini 区域 -->
+            <div class="service-card gemini-card">
+                <div class="card-inner">
+                    <div class="logo-container">
+                        <svg class="logo gemini-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h2 class="service-title">Gemini</h2>
+                    <p class="service-desc">Google 先进AI助手<br/>Gemini Advanced 账号服务 · 提供不同质保</p>
+                    <button class="btn btn-gemini" onclick="openGeminiShop()">
+                        <span>了解服务</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="features">
+                        <span class="feature-tag">Google Pro 一年</span>
+                        <span class="feature-tag">Gemini 3</span>
+                        <span class="feature-tag">提供不同质保</span>
+                        <span class="feature-tag">独享账号</span>
                     </div>
                 </div>
             </div>
@@ -153,12 +181,12 @@
                                 <td>¥1550/月</td>
                                 <td>封号按剩余天数退款</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Gemini Advanced</td>
                                 <td>$19.99/月</td>
                                 <td>¥185/月</td>
                                 <td>无售后</td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>SuperGrok</td>
                                 <td>$30/月</td>
@@ -247,6 +275,88 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gemini账号服务弹窗 -->
+        <div class="claude-modal" id="geminiModal">
+            <div class="claude-modal-overlay" onclick="closeGeminiModal()"></div>
+            <div class="claude-modal-content">
+                <div class="claude-modal-header">
+                    <h2>Gemini 账号服务说明</h2>
+                    <button class="claude-modal-close" onclick="closeGeminiModal()">×</button>
+                </div>
+                <div class="claude-modal-body">
+                    <div class="choice-cards">
+                        <div class="choice-card">
+                            <div class="choice-icon" style="background: rgba(142, 159, 245, 0.15);">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: #8e9ff5;">
+                                    <path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21M4 7H20M4 17H20M6 3H18C19.1046 3 20 3.89543 20 5V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="choice-title">账号服务</h3>
+                            <p class="choice-desc">提供独享Gemini Advanced账号<br/>带质保，安全可靠</p>
+                            <ul class="choice-features">
+                                <li>✓ 独享账号，可自行修改密码</li>
+                                <li>✓ Gemini Advanced会员</li>
+                                <li>✓ 提供质保服务</li>
+                                <li>✓ 人工服务，联系客服咨询</li>
+                            </ul>
+                            <a href="#" onclick="scrollToContact(); closeGeminiModal(); return false;" class="choice-btn choice-btn-primary">
+                                <span>联系客服</span>
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gemini 商城跳转提示弹窗 (高级感升级版) -->
+        <div class="claude-modal premium-modal" id="geminiShopModal">
+            <div class="claude-modal-overlay" onclick="closeGeminiShopModal()"></div>
+            <div class="claude-modal-content gemini-premium-content">
+                <!-- 背景装饰流光 -->
+                <div class="modal-glow"></div>
+                
+                <div class="claude-modal-header">
+                    <div class="header-title-wrapper">
+                        <span class="premium-badge">安全访问</span>
+                        <h2>即将进入商城</h2>
+                    </div>
+                    <button class="claude-modal-close" onclick="closeGeminiShopModal()">×</button>
+                </div>
+                
+                <div class="claude-modal-body">
+                    <div class="premium-alert-icon">
+                        <div class="icon-ring"></div>
+                        <div class="icon-ring-outer"></div>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="premium-message">
+                        <h3>网络环境提醒</h3>
+                        <p>为了确保商城支付功能的正常使用，如果您当前开启了代理/VPN导致页面无法加载：</p>
+                        <div class="tip-box">
+                            <span class="tip-icon">💡</span>
+                            <p>请尝试<strong>关闭代理</strong>后直接访问商城</p>
+                        </div>
+                    </div>
+
+                    <button onclick="confirmGeminiShop()" class="premium-confirm-btn">
+                        <span class="btn-shine"></span>
+                        <span class="btn-text">立即前往商城</span>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="btn-arrow">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <p class="auto-close-note">点击按钮后将为您新窗口打开链接</p>
                 </div>
             </div>
         </div>

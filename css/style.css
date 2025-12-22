@@ -17,6 +17,12 @@
     --claude-light: #f5e6e0;
     --claude-gradient: linear-gradient(135deg, #cc785c 0%, #a8563d 100%);
 
+    /* Gemini 配色 */
+    --gemini-primary: #8e9ff5;
+    --gemini-secondary: #6b7ce6;
+    --gemini-light: #e8ebfc;
+    --gemini-gradient: linear-gradient(135deg, #8e9ff5 0%, #6b7ce6 100%);
+
     /* 通用配色 */
     --bg-dark: #0a0a0a;
     --bg-card: #1a1a1a;
@@ -44,7 +50,8 @@ body {
     z-index: 0;
     background:
         radial-gradient(circle at 20% 30%, rgba(16, 163, 127, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(204, 120, 92, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 50% 50%, rgba(204, 120, 92, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(142, 159, 245, 0.1) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -132,7 +139,7 @@ body {
 .main-title {
     font-size: 3.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--claude-primary) 100%);
+    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--gemini-primary) 50%, var(--claude-primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -242,8 +249,8 @@ body {
 /* 主内容区域 */
 .main-content {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 50px;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 30px;
     margin-bottom: 70px;
     align-items: stretch;
     position: relative;
@@ -255,15 +262,28 @@ body {
     width: 2px;
     height: 100%;
     min-height: 420px;
+    position: relative;
+    animation: dividerGlow 3s ease-in-out infinite;
+}
+
+.divider.divider-1 {
     background: linear-gradient(
         to bottom,
         transparent,
-        var(--gpt-primary) 20%,
-        var(--claude-primary) 80%,
+        var(--gpt-primary) 30%,
+        var(--claude-primary) 70%,
         transparent
     );
-    position: relative;
-    animation: dividerGlow 3s ease-in-out infinite;
+}
+
+.divider.divider-2 {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--claude-primary) 30%,
+        var(--gemini-primary) 70%,
+        transparent
+    );
 }
 
 .divider::before,
@@ -277,16 +297,28 @@ body {
     border-radius: 50%;
 }
 
-.divider::before {
+.divider.divider-1::before {
     top: 0;
     background: var(--gpt-primary);
     box-shadow: 0 0 20px var(--gpt-primary);
 }
 
-.divider::after {
+.divider.divider-1::after {
     bottom: 0;
     background: var(--claude-primary);
     box-shadow: 0 0 20px var(--claude-primary);
+}
+
+.divider.divider-2::before {
+    top: 0;
+    background: var(--claude-primary);
+    box-shadow: 0 0 20px var(--claude-primary);
+}
+
+.divider.divider-2::after {
+    bottom: 0;
+    background: var(--gemini-primary);
+    box-shadow: 0 0 20px var(--gemini-primary);
 }
 
 @keyframes dividerGlow {
@@ -351,6 +383,27 @@ body {
     opacity: 0.05;
 }
 
+.gemini-card {
+    color: var(--gemini-primary);
+    animation-delay: 0.15s;
+}
+
+.gemini-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--gemini-primary) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.gemini-card:hover::after {
+    opacity: 0.05;
+}
+
 .claude-card {
     color: var(--claude-primary);
     animation-delay: 0.2s;
@@ -408,6 +461,13 @@ body {
 
 .gpt-logo {
     color: var(--gpt-primary);
+}
+
+.gemini-logo {
+    color: var(--gemini-primary);
+    width: 70px;
+    height: 70px;
+    filter: drop-shadow(0 4px 12px rgba(142, 159, 245, 0.8));
 }
 
 .claude-logo {
@@ -496,6 +556,17 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-gemini {
+    background: var(--gemini-gradient);
+    color: white;
+    box-shadow: 0 8px 24px rgba(142, 159, 245, 0.3);
+}
+
+.btn-gemini:hover {
+    box-shadow: 0 12px 32px rgba(142, 159, 245, 0.4);
+    transform: translateY(-2px);
+}
+
 .btn-claude {
     background: var(--claude-gradient);
     color: white;
@@ -530,182 +601,160 @@ body {
     color: var(--gpt-primary);
 }
 
+.gemini-card .feature-tag:hover {
+    background: var(--gemini-light);
+    color: var(--gemini-primary);
+}
+
 .claude-card .feature-tag:hover {
     background: var(--claude-light);
     color: var(--claude-primary);
 }
 
-/* 微信联系名片 */
+/* 微信联系名片 - 极致视觉优化 */
 .contact-card {
-    background: var(--bg-card);
-    border-radius: 24px;
-    padding: 32px;
-    border: 1px solid var(--divider);
+    background: rgba(26, 26, 26, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 60px 80px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     animation: fadeInUp 0.8s ease-out 0.3s both;
     position: relative;
     z-index: 5;
+    max-width: 1000px;
+    margin: 40px auto 100px;
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
 }
 
 .contact-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 32px;
+    gap: 16px;
+    margin-bottom: 54px;
+    position: relative;
 }
 
 .wechat-icon {
-    width: 32px;
-    height: 32px;
-    color: #07c160;
+    width: 40px;
+    height: 40px;
+    filter: none;
 }
 
 .contact-header h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    margin: 0;
 }
 
 .wechat-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    margin-bottom: 28px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    gap: 80px;
 }
 
 .qr-code-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex-shrink: 0;
 }
 
-.qr-placeholder {
-    width: 180px;
-    height: 180px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    border: 2px dashed var(--divider);
-    transition: all 0.3s;
-}
-
-.qr-placeholder:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: #07c160;
-}
-
-.qr-placeholder svg {
-    width: 90px;
-    height: 90px;
-    color: var(--text-secondary);
-}
-
-.qr-placeholder p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 500;
+.qr-code-container:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .qr-code {
-    width: 180px;
-    height: 180px;
-    border-radius: 16px;
-    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 18px;
 }
 
 .wechat-id-section {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    flex: 1;
+    max-width: 400px;
 }
 
 .wechat-label {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.3);
     font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: -6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .wechat-id-box {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    border: 2px solid var(--divider);
+    justify-content: space-between;
+    gap: 20px;
+    padding: 8px 8px 8px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s;
 }
 
 .wechat-id-box:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #07c160;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(7, 193, 96, 0.4);
 }
 
 .wechat-id {
-    flex: 1;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: var(--text-primary);
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.05em;
+    color: #ffffff;
+    font-family: -apple-system, system-ui, sans-serif;
 }
 
 .copy-btn {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 10px 18px;
+    gap: 8px;
+    padding: 14px 28px;
     background: #07c160;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
     white-space: nowrap;
 }
 
-.copy-btn:hover {
-    background: #06ad56;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(7, 193, 96, 0.3);
-}
-
-.copy-btn:active {
-    transform: translateY(0);
-}
-
-.copy-icon {
-    width: 18px;
-    height: 18px;
-}
-
-.copy-btn.copied {
-    background: #52c41a;
-}
-
 .service-note {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    padding: 12px 18px;
-    background: rgba(7, 193, 96, 0.08);
-    border-radius: 10px;
-    border-left: 3px solid #07c160;
+    color: rgba(7, 193, 96, 0.9);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 16px 24px;
+    background: rgba(7, 193, 96, 0.05);
+    border-radius: 18px;
+    border-left: 4px solid #07c160;
+    margin-top: 10px;
 }
 
 .copyright {
     text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    margin-top: 60px;
     padding-top: 24px;
-    border-top: 1px solid var(--divider);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
 }
 
 /* 动画 */
@@ -747,7 +796,7 @@ body {
     align-items: center;
     gap: 10px;
     padding: 14px 24px;
-    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--claude-primary) 100%);
+    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--gemini-primary) 50%, var(--claude-primary) 100%);
     color: white;
     border: none;
     border-radius: 50px;
@@ -762,7 +811,7 @@ body {
 
 .bookmark-btn:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 32px rgba(16, 163, 127, 0.4), 0 12px 32px rgba(204, 120, 92, 0.4);
+    box-shadow: 0 12px 32px rgba(16, 163, 127, 0.4), 0 12px 32px rgba(142, 159, 245, 0.3), 0 12px 32px rgba(204, 120, 92, 0.4);
 }
 
 .bookmark-btn:active {
@@ -861,14 +910,14 @@ body {
 .bookmark-toast-title kbd {
     display: inline-block;
     padding: 4px 10px;
-    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--claude-primary) 100%);
+    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--gemini-primary) 50%, var(--claude-primary) 100%);
     color: white;
     border-radius: 6px;
     font-family: 'Courier New', monospace;
     font-size: 0.95rem;
     font-weight: 700;
     margin: 0 4px;
-    box-shadow: 0 2px 8px rgba(16, 163, 127, 0.3);
+    box-shadow: 0 2px 8px rgba(142, 159, 245, 0.4);
 }
 
 .bookmark-toast-subtitle {
@@ -1382,22 +1431,48 @@ body {
         height: 2px;
         min-height: auto;
         margin: 0 auto;
+    }
+
+    .divider.divider-1 {
         background: linear-gradient(
             to right,
             transparent,
-            var(--gpt-primary) 20%,
-            var(--claude-primary) 80%,
+            var(--gpt-primary) 30%,
+            var(--claude-primary) 70%,
             transparent
         );
     }
 
-    .divider::before {
+    .divider.divider-2 {
+        background: linear-gradient(
+            to right,
+            transparent,
+            var(--claude-primary) 30%,
+            var(--gemini-primary) 70%,
+            transparent
+        );
+    }
+
+    .divider.divider-1::before {
         left: 0;
         top: 50%;
         transform: translate(-50%, -50%);
     }
 
-    .divider::after {
+    .divider.divider-1::after {
+        right: auto;
+        left: 100%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .divider.divider-2::before {
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .divider.divider-2::after {
         right: 0;
         left: auto;
         top: 50%;
@@ -1410,8 +1485,20 @@ body {
     }
 
     .wechat-info {
-        grid-template-columns: 1fr;
-        gap: 24px;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .wechat-id-section {
+        min-width: unset;
+        width: 100%;
+        align-items: center;
+    }
+
+    .wechat-id-box {
+        width: 100%;
+        max-width: 320px;
+        justify-content: space-between;
     }
 }
 
@@ -1611,25 +1698,213 @@ body {
         padding: 14px 32px;
     }
 
-    .wechat-id {
-        font-size: 1.1rem;
-    }
-
-    .qr-placeholder {
-        width: 160px;
-        height: 160px;
-    }
-
-    .qr-placeholder svg {
-        width: 80px;
-        height: 80px;
-    }
-
     .contact-card {
-        padding: 28px 24px;
+        padding: 32px 24px;
+    }
+
+    .qr-code {
+        width: 140px;
+        height: 140px;
     }
 }
 
+/* 高级感弹窗样式升级 */
+.gemini-premium-content {
+    max-width: 550px !important;
+    background: linear-gradient(145deg, #161a25 0%, #0d0f14 100%) !important;
+    border: 1px solid rgba(142, 159, 245, 0.2) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(142, 159, 245, 0.05) !important;
+}
+
+.modal-glow {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(142, 159, 245, 0.1) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.header-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.premium-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gemini-primary);
+    background: rgba(142, 159, 245, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+.premium-alert-icon {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.premium-alert-icon svg {
+    width: 44px;
+    height: 44px;
+    color: #ffc107;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.5));
+}
+
+.icon-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 193, 7, 0.05);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    animation: rotateRing 10s linear infinite;
+}
+
+.icon-ring-outer {
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 193, 7, 0.1);
+    animation: rotateRingRev 15s linear infinite;
+}
+
+@keyframes rotateRing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateRingRev {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+.premium-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.premium-message h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.premium-message p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.tip-box {
+    margin-top: 24px;
+    padding: 18px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.tip-icon {
+    font-size: 1.5rem;
+}
+
+.tip-box p {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.tip-box strong {
+    color: #ffc107;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.premium-confirm-btn {
+    width: 100%;
+    padding: 20px 32px;
+    background: var(--gemini-gradient);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(142, 159, 245, 0.4);
+}
+
+.premium-confirm-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(142, 159, 245, 0.6);
+}
+
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: all 0.6s;
+}
+
+.premium-confirm-btn:hover .btn-shine {
+    left: 100%;
+    transition: all 0.6s;
+}
+
+.btn-arrow {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.premium-confirm-btn:hover .btn-arrow {
+    transform: translateX(6px);
+}
+
+.auto-close-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 24px;
+}
+
+@media (max-width: 480px) {
+    .premium-message h3 { font-size: 1.5rem; }
+    .premium-confirm-btn { font-size: 1.1rem; padding: 16px 24px; }
+    .premium-alert-icon { transform: scale(0.8); margin-bottom: 16px; }
+}
 @media (max-width: 480px) {
     .claude-modal-header {
         padding: 16px 20px;
@@ -1638,6 +1913,7 @@ body {
     .claude-modal-header h2 {
         font-size: 1.4rem;
     }
+}
 
     .claude-modal-close {
         width: 36px;
@@ -1862,26 +2138,20 @@ body {
     }
 
     .contact-card {
-        padding: 24px 20px;
+        padding: 32px 20px;
     }
 
     .wechat-id {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .wechat-id-box {
-        flex-direction: column;
-        align-items: stretch;
+        padding: 8px 8px 8px 16px;
     }
 
     .copy-btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .qr-placeholder {
-        width: 140px;
-        height: 140px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
     }
 
     .qr-placeholder svg {
