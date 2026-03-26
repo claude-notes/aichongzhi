@@ -303,26 +303,9 @@ document.querySelectorAll('.service-card, .contact-card').forEach(el => {
     observer.observe(el);
 });
 
-// 键盘快捷键
-document.addEventListener('keydown', (e) => {
-    // 按 G 键跳转到 ChatGPT
-    if (e.key === 'g' || e.key === 'G') {
-        window.open('https://chatgpt.com', '_blank');
-    }
-    // 按 M 键跳转到 Gemini
-    if (e.key === 'm' || e.key === 'M') {
-        window.open('https://gemini.google.com', '_blank');
-    }
-    // 按 C 键跳转到 Claude
-    if (e.key === 'c' || e.key === 'C') {
-        window.open('https://claude.ai', '_blank');
-    }
-});
-
 // 添加加载完成提示
 window.addEventListener('load', () => {
     console.log('%c🚀 AI代充导航已加载完成！', 'color: #10a37f; font-size: 20px; font-weight: bold;');
-    console.log('%c💡 快捷键提示：按 G 键快速访问 ChatGPT，按 M 键快速访问 Gemini，按 C 键快速访问 Claude', 'color: #8e9ff5; font-size: 14px;');
 });
 
 // Logo 彩蛋效果

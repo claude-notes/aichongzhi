@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+
+# If your site is deployed in a sub-path (e.g. GitHub Pages project site),
+# keep this relative. If you have a full domain, you can replace with an absolute URL.
+Sitemap: sitemap.xml
+

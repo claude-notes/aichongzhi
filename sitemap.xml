@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IMPORTANT:
+  - This file is a placeholder to prevent publishing a wrong domain.
+  - To generate a real sitemap with absolute URLs, run:
+      SITE_URL="https://your-domain.com" python generate_sitemap.py
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>

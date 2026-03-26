@@ -4,6 +4,180 @@
     box-sizing: border-box;
 }
 
+/* 页面快捷导航 */
+.quick-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: -40px auto 56px;
+    max-width: 1100px;
+    padding: 0 8px;
+}
+
+.quick-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    font-size: 0.95rem;
+}
+
+.quick-link:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* SEO 内容区（FAQ） */
+.seo-section {
+    margin: 70px auto 0;
+    max-width: 1100px;
+    padding: 42px 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 28px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* 内容页主布局（Guide / FAQ） */
+.content-main {
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+    z-index: 10;
+}
+
+.content-main .seo-section {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+.seo-title {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--gpt-primary) 0%, var(--gemini-primary) 50%, var(--claude-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.seo-intro {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 22px;
+}
+
+.faq-list {
+    display: grid;
+    gap: 14px;
+}
+
+.faq-item {
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    padding: 16px 18px;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    outline: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "＋";
+    float: right;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 800;
+}
+
+.faq-item[open] summary::after {
+    content: "－";
+}
+
+.faq-item p {
+    color: rgba(255, 255, 255, 0.86);
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+.faq-item a {
+    color: var(--gemini-primary);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(142, 159, 245, 0.7);
+}
+
+.faq-item a:hover {
+    border-bottom-color: rgba(142, 159, 245, 1);
+}
+
+.footer-links {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.28);
+    padding-bottom: 2px;
+}
+
+.footer-links a:hover {
+    color: rgba(255, 255, 255, 0.92);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .quick-nav {
+        margin: -44px auto 44px;
+        gap: 10px;
+    }
+
+    .quick-link {
+        padding: 9px 14px;
+        font-size: 0.9rem;
+    }
+
+    .content-main {
+        margin: 0 auto 60px;
+        padding: 0 4px;
+        gap: 18px;
+    }
+
+    .seo-section {
+        padding: 30px 18px;
+        border-radius: 22px;
+    }
+
+    .seo-title {
+        font-size: 1.6rem;
+    }
+}
+
 :root {
     /* ChatGPT 配色 */
     --gpt-primary: #10a37f;
