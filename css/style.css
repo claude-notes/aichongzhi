@@ -197,6 +197,12 @@
     --gemini-light: #e8ebfc;
     --gemini-gradient: linear-gradient(135deg, #8e9ff5 0%, #6b7ce6 100%);
 
+    /* Grok 配色 */
+    --grok-primary: #f5f7fb;
+    --grok-secondary: #8f98a3;
+    --grok-light: #e7ebf1;
+    --grok-gradient: linear-gradient(135deg, #0d0f12 0%, #242830 55%, #4a515d 100%);
+
     /* 通用配色 */
     --bg-dark: #0a0a0a;
     --bg-card: #1a1a1a;
@@ -225,7 +231,8 @@ body {
     background:
         radial-gradient(circle at 20% 30%, rgba(16, 163, 127, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(204, 120, 92, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(142, 159, 245, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 80% 70%, rgba(142, 159, 245, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 92% 18%, rgba(245, 247, 251, 0.06) 0%, transparent 42%);
     pointer-events: none;
 }
 
@@ -423,8 +430,8 @@ body {
 /* 主内容区域 */
 .main-content {
     display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    gap: 30px;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 24px;
     margin-bottom: 70px;
     align-items: stretch;
     position: relative;
@@ -456,6 +463,16 @@ body {
         transparent,
         var(--claude-primary) 30%,
         var(--gemini-primary) 70%,
+        transparent
+    );
+}
+
+.divider.divider-3 {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--gemini-primary) 30%,
+        var(--grok-primary) 70%,
         transparent
     );
 }
@@ -493,6 +510,18 @@ body {
     bottom: 0;
     background: var(--gemini-primary);
     box-shadow: 0 0 20px var(--gemini-primary);
+}
+
+.divider.divider-3::before {
+    top: 0;
+    background: var(--gemini-primary);
+    box-shadow: 0 0 20px var(--gemini-primary);
+}
+
+.divider.divider-3::after {
+    bottom: 0;
+    background: var(--grok-primary);
+    box-shadow: 0 0 20px var(--grok-primary);
 }
 
 @keyframes dividerGlow {
@@ -597,6 +626,80 @@ body {
 
 .claude-card:hover::after {
     opacity: 0.05;
+}
+
+.grok-card {
+    color: var(--grok-primary);
+    animation-delay: 0.25s;
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 36%),
+        linear-gradient(160deg, rgba(7, 8, 10, 0.98) 0%, rgba(18, 20, 24, 0.98) 50%, rgba(8, 9, 11, 0.98) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.grok-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.grok-card:hover::after {
+    opacity: 0.08;
+}
+
+.grok-card .logo-container {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.08) 0%, transparent 38%),
+        linear-gradient(160deg, rgba(7, 9, 12, 0.98) 0%, rgba(16, 19, 24, 0.98) 55%, rgba(9, 11, 14, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 38px rgba(0, 0, 0, 0.4),
+        0 0 0 10px rgba(255, 255, 255, 0.02);
+}
+
+.grok-card .logo-container::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+}
+
+.grok-card .logo-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, transparent 40%, rgba(255, 255, 255, 0.02) 100%);
+    pointer-events: none;
+}
+
+.grok-card:hover .logo-container {
+    transform: scale(1.06) translateY(-2px);
+    background:
+        radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 38%),
+        linear-gradient(160deg, rgba(5, 7, 10, 1) 0%, rgba(18, 22, 27, 1) 56%, rgba(8, 10, 13, 1) 100%);
+}
+
+.grok-logo-image {
+    width: 78px;
+    height: 78px;
+    filter: none;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
 }
 
 .service-card:hover {
@@ -752,6 +855,22 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-grok {
+    background: var(--grok-gradient);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.btn-grok:hover {
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
 /* 特性标签 */
 .features {
     display: flex;
@@ -783,6 +902,11 @@ body {
 .claude-card .feature-tag:hover {
     background: var(--claude-light);
     color: var(--claude-primary);
+}
+
+.grok-card .feature-tag:hover {
+    background: rgba(255, 255, 255, 0.92);
+    color: #0b0d10;
 }
 
 /* 微信联系名片 - 极致视觉优化 */
@@ -1587,7 +1711,123 @@ body {
     box-shadow: 0 12px 32px rgba(7, 193, 96, 0.5);
 }
 
+.grok-modal-content {
+    background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.08) 0%, transparent 26%),
+        linear-gradient(145deg, rgba(8, 9, 11, 0.99) 0%, rgba(16, 18, 22, 0.99) 48%, rgba(26, 30, 36, 0.99) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.72),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.grok-modal-header {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%),
+        rgba(0, 0, 0, 0.22);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.grok-modal-header h2 {
+    letter-spacing: 0.01em;
+}
+
+.grok-modal-content .claude-modal-close {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.grok-modal-content .claude-modal-close:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.grok-choice-card {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.grok-choice-card:hover {
+    border-color: var(--grok-primary);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.36);
+}
+
+.grok-choice-card::before {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 70%);
+}
+
+.step-number-grok {
+    background: var(--grok-gradient);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.grok-choice-icon {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(224, 229, 236, 0.9) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        0 16px 30px rgba(0, 0, 0, 0.26);
+}
+
+.grok-choice-card:hover .grok-choice-icon {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 1) 0%, rgba(235, 239, 244, 0.94) 100%);
+}
+
+.grok-choice-icon svg {
+    color: #08090b;
+}
+
+.grok-step-arrow {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.grok-choice-btn-primary {
+    background: var(--grok-gradient);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.grok-choice-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.grok-choice-btn-secondary {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(226, 231, 238, 0.94) 100%);
+    color: #090b0e;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        0 10px 26px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.grok-choice-btn-secondary:hover {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 1) 0%, rgba(235, 239, 244, 0.98) 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
 /* 响应式设计 */
+@media (max-width: 1400px) {
+    .main-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+    }
+
+    .divider {
+        display: none;
+    }
+}
+
 @media (max-width: 1200px) {
     .service-card {
         padding: 36px 32px;
@@ -1598,59 +1838,6 @@ body {
     .main-content {
         grid-template-columns: 1fr;
         gap: 40px;
-    }
-
-    .divider {
-        width: 80%;
-        height: 2px;
-        min-height: auto;
-        margin: 0 auto;
-    }
-
-    .divider.divider-1 {
-        background: linear-gradient(
-            to right,
-            transparent,
-            var(--gpt-primary) 30%,
-            var(--claude-primary) 70%,
-            transparent
-        );
-    }
-
-    .divider.divider-2 {
-        background: linear-gradient(
-            to right,
-            transparent,
-            var(--claude-primary) 30%,
-            var(--gemini-primary) 70%,
-            transparent
-        );
-    }
-
-    .divider.divider-1::before {
-        left: 0;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .divider.divider-1::after {
-        right: auto;
-        left: 100%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .divider.divider-2::before {
-        left: 0;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .divider.divider-2::after {
-        right: 0;
-        left: auto;
-        top: 50%;
-        transform: translate(50%, -50%);
     }
 
     .service-card {

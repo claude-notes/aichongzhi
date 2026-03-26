@@ -189,8 +189,8 @@ function createParticle(container) {
     const duration = Math.random() * 20 + 10;
     const delay = Math.random() * 5;
 
-    // 随机选择颜色 (GPT绿色、Gemini蓝紫色或Claude棕色)
-    const colors = ['rgba(16, 163, 127, 0.3)', 'rgba(142, 159, 245, 0.3)', 'rgba(204, 120, 92, 0.3)'];
+    // 随机选择颜色 (GPT、Gemini、Claude、Grok)
+    const colors = ['rgba(16, 163, 127, 0.3)', 'rgba(142, 159, 245, 0.3)', 'rgba(204, 120, 92, 0.3)', 'rgba(123, 199, 255, 0.3)'];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     particle.style.cssText = `
@@ -407,7 +407,7 @@ document.head.appendChild(easterEggStyle);
 
 // 收藏页面功能
 function addToBookmarks() {
-    const pageTitle = 'AI 自助代充升级导航 | ChatGPT & Gemini & Claude';
+    const pageTitle = 'AI 自助代充升级导航 | ChatGPT / Claude / Gemini / Grok';
     const pageUrl = window.location.href;
     const bookmarkBtn = document.getElementById('bookmarkBtn');
 
@@ -685,6 +685,24 @@ function closeClaudeModal() {
     }
 }
 
+// 打开Grok充值方式选择弹窗
+function openGrokModal() {
+    const modal = document.getElementById('grokModal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 关闭Grok充值方式选择弹窗
+function closeGrokModal() {
+    const modal = document.getElementById('grokModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
 // 打开Gemini账号服务弹窗
 function openGeminiModal() {
     const modal = document.getElementById('geminiModal');
@@ -750,6 +768,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closePriceModal();
         closeClaudeModal();
+        closeGrokModal();
         closeGeminiModal();
         closeGeminiShopModal();
     }
