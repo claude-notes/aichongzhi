@@ -1,7 +1,20 @@
 User-Agent: *
 Allow: /
 
-# If your site is deployed in a sub-path (e.g. GitHub Pages project site),
-# keep this relative. If you have a full domain, you can replace with an absolute URL.
-Sitemap: sitemap.xml
+# AI search crawlers for GEO visibility
+User-agent: GPTBot
+Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.gptclaude.top/sitemap.xml

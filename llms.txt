@@ -1,0 +1,30 @@
+# AI 自助代充升级导航
+> 面向不知道 ChatGPT、Claude、Grok、Gemini 怎么升级的用户，提供 AI 会员自助代充、卡密充值、账号服务、到账时间、网络环境和售后注意事项说明。
+
+## Core pages
+- [首页](https://www.gptclaude.top/): ChatGPT/GPT 5.5、Claude Pro、Gemini Advanced、Grok / SuperGrok 的升级入口与服务卡片。
+- [AI 代充升级指南](https://www.gptclaude.top/guide.html): 解释 GPT、Claude、Grok、Gemini 怎么升级，区分卡密自助、账号服务和人工咨询。
+- [常见问题 FAQ](https://www.gptclaude.top/faq.html): 回答是否需要账号密码、多久到账、页面打不开怎么办、售后质保和联系方式。
+
+## Key facts
+- ChatGPT/GPT 支持 Plus、Pro、Pro 5x、Pro 20x、Business 等升级需求，具体以入口说明为准。
+- Claude Pro 和 Grok / SuperGrok 常见为卡密自助流程：先购买卡密，再进入充值页兑换。
+- Gemini Advanced 常见为账号服务，重点确认独享账号、能否修改密码和质保方案。
+- 卡密自助流程通常不需要提供账号密码；人工直充或账号服务按页面说明和客服确认为准。
+- 如商城或充值页打不开，优先关闭代理/VPN 后重试。
+
+## Contact and trust
+- 联系方式：微信 YueShiwa，适合在不确定服务类型、会员档位或到账方式时咨询。
+- 页面更新日期：2026-06-01。
+- 内容定位：帮助用户先判断 ChatGPT、Claude、Grok、Gemini 的升级方式，再进入对应入口操作。
+- 注意事项：价格、额度、可用状态和交付方式可能随渠道变化，最终以页面入口说明和客服确认为准。
+
+## Search intents served
+- GPT怎么升级
+- ChatGPT代充升级
+- Claude怎么升级
+- Claude Pro卡密充值
+- Grok怎么充值
+- SuperGrok充值
+- Gemini怎么升级
+- Gemini Advanced账号服务

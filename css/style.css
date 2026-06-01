@@ -81,6 +81,81 @@
     margin-bottom: 22px;
 }
 
+.last-updated {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+.geo-answer {
+    margin: 22px 0;
+    padding: 22px 24px;
+    border-left: 4px solid var(--gpt-primary);
+    border-radius: 16px;
+    background: rgba(16, 163, 127, 0.10);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.85;
+    font-weight: 500;
+}
+
+.seo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.intent-card {
+    border-radius: 18px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.26);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.intent-card h3 {
+    color: var(--text-primary);
+    font-size: 1.08rem;
+    margin-bottom: 10px;
+}
+
+.intent-card p {
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.75;
+}
+
+.seo-table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(0, 0, 0, 0.24);
+}
+
+.seo-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.seo-table th,
+.seo-table td {
+    padding: 15px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6;
+}
+
+.seo-table th {
+    color: var(--text-primary);
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.seo-table tr:last-child td {
+    border-bottom: 0;
+}
+
 .faq-list {
     display: grid;
     gap: 14px;
@@ -175,6 +250,14 @@
 
     .seo-title {
         font-size: 1.6rem;
+    }
+
+    .seo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .geo-answer {
+        padding: 18px;
     }
 }
 
@@ -1299,7 +1382,7 @@ body {
     background: rgba(0, 0, 0, 0.2);
 }
 
-.price-modal-header h2 {
+.price-modal-header .modal-title {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -1455,7 +1538,7 @@ body {
     background: rgba(0, 0, 0, 0.3);
 }
 
-.claude-modal-header h2 {
+.claude-modal-header .modal-title {
     font-size: 2rem;
     font-weight: 800;
     color: var(--text-primary);
@@ -1728,7 +1811,7 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.grok-modal-header h2 {
+.grok-modal-header .modal-title {
     letter-spacing: 0.01em;
 }
 
@@ -1873,7 +1956,7 @@ body {
         padding: 24px 28px;
     }
 
-    .claude-modal-header h2 {
+    .claude-modal-header .modal-title {
         font-size: 1.6rem;
     }
 
@@ -1960,7 +2043,7 @@ body {
         padding: 20px 24px;
     }
 
-    .price-modal-header h2 {
+    .price-modal-header .modal-title {
         font-size: 1.5rem;
     }
 
@@ -2271,7 +2354,7 @@ body {
         padding: 16px 20px;
     }
 
-    .claude-modal-header h2 {
+    .claude-modal-header .modal-title {
         font-size: 1.4rem;
     }
 }
@@ -2380,7 +2463,7 @@ body {
         padding: 16px 20px;
     }
 
-    .price-modal-header h2 {
+    .price-modal-header .modal-title {
         font-size: 1.3rem;
     }
 
